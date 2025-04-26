@@ -19,7 +19,7 @@ class _MyAttendanceState extends State<MyAttendance> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Total Participants"),
+        title: const Text("Attended Participants"),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 237, 155, 68),
       ),
