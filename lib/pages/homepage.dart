@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:my_flutter_app/utils/routes.dart'; // Make sure your routes are correct
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -7,6 +7,7 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -14,55 +15,66 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("SQAC Attendance"),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 209, 121, 28),
+        backgroundColor: const Color.fromARGB(255, 237, 155, 68),
       ),
-      body: SingleChildScrollView(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch pins full width
           children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                "Welcome to SQAC Attendance",
-                style: GoogleFonts.lato(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange.shade300,
+                padding: const EdgeInsets.symmetric(vertical: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, MyRoutes.noOfParticipantsRoute);
+              },
+              child: const Text(
+                "No. of Participants",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange.shade300,
+                padding: const EdgeInsets.symmetric(vertical: 20),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, MyRoutes.attendedParticipantsRoute);
+              },
+              child: const Text(
+                "Attended Participants",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, MyRoutes.imageRoute);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Card(
+                  child: Container(
+                    height: 500,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.orange.shade100,
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/qr_image.jpeg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
-            _buildInfoBox("Total Participants", "100"),
-            _buildInfoBox("Total Classes", "10"),
-            _buildInfoBox("Attendance Percentage", "95%"),
           ],
         ),
-      ),
-    );
-  }
-  Widget _buildInfoBox(String title, String value) {
-    return Container(
-      width: 360,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.orange.shade100,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.orange, width: 2),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            value,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-        ],
       ),
     );
   }
