@@ -1,6 +1,7 @@
-# my_attendance
+# My_Attendance
 
 A new Flutter project.
+A Flutter-based application designed to efficiently mark attendance for events. Only registered attendees will be able to mark their presence during the event.
 
 ## Getting Started
 
